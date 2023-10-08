@@ -8,6 +8,6 @@ numpyro
 numpy
 scipy
 matplotlib
-filecoin-mecha-twin @ git+https://github.com/protocol/filecoin-mecha-twin.git@policy_update
+mechafil @ git+https://github.com/protocol/filecoin-mecha-twin.git@policy_update
 scenario-generator @ git+https://github.com/protocol/scenario-generator.git
 pystarboard @ git+https://github.com/protocol/pystarboard.git
