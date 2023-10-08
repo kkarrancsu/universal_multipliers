@@ -13,10 +13,12 @@ st.sidebar.success("Select a Page above.")
 st.markdown(
     """
     ### Universal Multipliers
-This application explores the effect of universal multipliers on the Filecoin economy. Specifically, the calculator computes the difference in Fiat ROI between CC miners and variants of Fil+ miners.
-`FiatROI = NetIncome[Fil+ Variant] - NetIncome[CC]`. 
+This application explores the effect of universal multipliers on the Filecoin economy. Specifically, the calculator computes the difference in `FiatROI` between CC miners and variants of Fil+ miners.
+`FiatROI = NetIncome[Fil+ Variant] - NetIncome[CC]`. From an incentives perspective, this metric captures the difference in the profitability of Fil+ miners and CC miners. If the difference in profitability 
+is reduced from the StatusQuo multiplier schedule (i.e. Fil+ = 10, CC = 1, RD = 1), then there is a reduced incentive to onboard Fil+ data, and consequently a reduced incentive
+to employ mechansisms that exploit Fil+.
 
-Please refer to the associated [report]() for more details and to better understand the context.
+For more details, please refer to the associated [report]() and [Medium blog post]().
 
 ### Cost Computation
 In the charts for both calculators, `net_income = revenue - costs`. The following table outlines all of the revenue and cost sources.  While most cost sources are adjustable via slider bar widgets, some are fixed due to their negligible impact on the overall cost.
@@ -31,7 +33,6 @@ Note that all revenue and costs are in units of $/TiB/Yr.
 | | | Pledge (% of Block Rewards)
 | | | Data Prep
 | | | FIL+ BizDev
-| | | RD BizDev
 | | | Storing Extra Copy
 
 
