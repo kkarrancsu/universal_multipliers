@@ -118,12 +118,12 @@ def compute_costs():
     results_df = pd.DataFrame(results_list)
     plot(results_df)
 
-# current_date = date.today() - timedelta(days=3)
-# mo_start = min(current_date.month - 1 % 12, 1)
-# start_date = date(current_date.year, mo_start, 1)
-# temporary
-current_date = date(2023, 9, 30) 
-start_date = date(2023, 9, 1)  # reduce locking bias by starting simulation close to current date
+current_date = date.today() - timedelta(days=3)
+mo_start = min(current_date.month - 1 % 12, 1)
+start_date = date(current_date.year, mo_start, 1)
+# # temporary
+# current_date = date(2023, 9, 30) 
+# start_date = date(2023, 9, 1)  # reduce locking bias by starting simulation close to current date
 
 forecast_length_days=365*3
 end_date = current_date + timedelta(days=forecast_length_days)

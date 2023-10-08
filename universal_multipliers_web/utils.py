@@ -20,45 +20,45 @@ import costs
 
 PUBLIC_AUTH_TOKEN='Bearer ghp_EviOPunZooyAagPPmftIsHfWarumaFOUdBUZ'
 
-# @st.cache_data
-# def download_historical_data(start_date, current_date, end_date):
-#     psd.setup_spacescope(PUBLIC_AUTH_TOKEN)
-#     setup_spacescope(PUBLIC_AUTH_TOKEN)
-
-#     t_hist_rbp, hist_rbp = u.get_historical_daily_onboarded_power(start_date, current_date)
-#     t_hist_rr, hist_rr = u.get_historical_renewal_rate(start_date, current_date)
-#     t_hist_fpr, hist_fpr = u.get_historical_filplus_rate(start_date, current_date)
-
-#     fil_stats_df = get_historical_network_stats(start_date,current_date,end_date)
-#     sector_expiration_stats_offline = get_sector_expiration_stats(start_date, current_date,end_date)
-    
-#     network_baseline = compute_baseline_power_array(start_date, end_date)
-#     zero_cum_capped_power = get_cum_capped_rb_power(start_date)
-
-#     start_vest_amt = get_vested_amount(start_date)
-
-#     dict_out = {
-#         't_rbp': t_hist_rbp,
-#         'hist_rbp': hist_rbp,
-#         't_rr': t_hist_rr,
-#         'historical_renewal_rate': hist_rr,
-#         't_fpr': t_hist_fpr,
-#         'historical_fpr': hist_fpr,
-#         'fil_stats_df': fil_stats_df,
-#         'sector_expiration_stats_offline': sector_expiration_stats_offline,
-#         'network_baseline': network_baseline,
-#         'zero_cum_capped_power': zero_cum_capped_power,
-#         'start_vest_amt': start_vest_amt
-#     }
-    
-#     return dict_out
-
-# temporary
+@st.cache_data
 def download_historical_data(start_date, current_date, end_date):
-    import pickle
-    with open('/Users/kiran/Documents/universal_multipliers/offline_info/download_historical_data.pkl', 'rb') as f:
-        dict_out = pickle.load(f)
+    psd.setup_spacescope(PUBLIC_AUTH_TOKEN)
+    setup_spacescope(PUBLIC_AUTH_TOKEN)
+
+    t_hist_rbp, hist_rbp = u.get_historical_daily_onboarded_power(start_date, current_date)
+    t_hist_rr, hist_rr = u.get_historical_renewal_rate(start_date, current_date)
+    t_hist_fpr, hist_fpr = u.get_historical_filplus_rate(start_date, current_date)
+
+    fil_stats_df = get_historical_network_stats(start_date,current_date,end_date)
+    sector_expiration_stats_offline = get_sector_expiration_stats(start_date, current_date,end_date)
+    
+    network_baseline = compute_baseline_power_array(start_date, end_date)
+    zero_cum_capped_power = get_cum_capped_rb_power(start_date)
+
+    start_vest_amt = get_vested_amount(start_date)
+
+    dict_out = {
+        't_rbp': t_hist_rbp,
+        'hist_rbp': hist_rbp,
+        't_rr': t_hist_rr,
+        'historical_renewal_rate': hist_rr,
+        't_fpr': t_hist_fpr,
+        'historical_fpr': hist_fpr,
+        'fil_stats_df': fil_stats_df,
+        'sector_expiration_stats_offline': sector_expiration_stats_offline,
+        'network_baseline': network_baseline,
+        'zero_cum_capped_power': zero_cum_capped_power,
+        'start_vest_amt': start_vest_amt
+    }
+    
     return dict_out
+
+# # temporary
+# def download_historical_data(start_date, current_date, end_date):
+#     import pickle
+#     with open('/Users/kiran/Documents/universal_multipliers/offline_info/download_historical_data.pkl', 'rb') as f:
+#         dict_out = pickle.load(f)
+#     return dict_out
 
 # add ROI to trajectory
 def add_generated_quantities(cil_rbp, duration=365)->pd.DataFrame:
@@ -374,7 +374,7 @@ def compute_mechafil_for_multiplier(rbp, rr, fpr, start_date, current_date, end_
                 
                 'scenario_return_per_sector': scenario_df['1y_return_per_sector'][offset],
                 'scenario_locked': scenario_df['network_locked'][offset],
-                
+
                 'cc_multiplier': multiplier_value[0],
                 'rd_multiplier': multiplier_value[0],
                 'filp_multiplier': multiplier_value[1],
